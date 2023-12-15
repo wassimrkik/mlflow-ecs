@@ -1,0 +1,30 @@
+name: Terraform Deploy ML API DEV
+on:
+    workflow_dispatch:
+
+env:
+    TF_VAR_snowflakepassword_dev: ${{secrets.TF_VAR_SNOWFLAKEPASSWORD_DEV}}
+    TF_VAR_snowflakepassword_uat: ""
+    TF_VAR_snowflakepassword_prod: ""
+    TF_VAR_sslcert_dev: ${{secrets.TF_VAR_PREDICTSSLCERT_DEV}}
+    TF_VAR_sslkey_dev: ${{secrets.TF_VAR_PREDICTSSLKEY_DEV}}
+    TF_VAR_sslcert_uat: ""
+    TF_VAR_sslcert_prod: ""
+    TF_VAR_sslkey_uat: ""
+    TF_VAR_sslkey_prod: ""
+jobs:
+    Terraform-Plan:
+        runs-on: [Terraform]
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: PLAN
+              run: |
+                terraform init -backend-config="bucket=sanofi-chc-emea-anp-terraformstate-dev" -backend-config="region=eu-west-1" 
+                terraform plan -var-file="dev.tfvars" -out "anp-ml-api-infrastructure-dev-planfile"
+
+            - name: APPLY
+              run: |
+                terraform apply -input=false "anp-ml-api-infrastructure-dev-planfile"
+                
