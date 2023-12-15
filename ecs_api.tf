@@ -71,7 +71,7 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
         },
         {
           "name" : "MLFLOW_TRACKING_URI",
-          "value" : "datalab-apa-mlflow.p893159272749.aws-amer.sanofi.com	"
+          "value" : "datalab-apa-mlflow.p893159272749.aws-amer.sanofi.com"
         }
       ]
       secrets = [{
