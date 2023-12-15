@@ -50,7 +50,7 @@ data "aws_iam_policy_document" "ANP-ML-API-Task" {
       "s3:ListBucketVersions",
       "s3:GetBucketLocation"
     ]
-    resources = "*"
+    resources = ["*"]
   }
   statement {
     actions = [
@@ -74,7 +74,7 @@ data "aws_iam_policy_document" "ANP-ML-API-Task" {
       "s3:PutObject",
       "s3:PutObjectAcl"
     ]
-    resources = "*"
+    resources = ["*"]
   }
 }
 
