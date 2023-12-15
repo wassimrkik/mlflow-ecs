@@ -14,7 +14,7 @@ env:
     TF_VAR_sslkey_prod: ""
 jobs:
     Terraform-Plan:
-        runs-on: [Terraform]
+        runs-on: [self-hosted, atmos-aws-shared-gh-runner]
         steps:
             - name: Checkout
               uses: actions/checkout@v3
