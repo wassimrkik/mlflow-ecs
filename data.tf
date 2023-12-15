@@ -37,13 +37,13 @@ locals {
     prod = var.snowflakepassword_prod
   }
   sslcert = {
-    dev = var.sslcert_dev,
-    uat = var.sslcert_uat,
+    dev  = var.sslcert_dev,
+    uat  = var.sslcert_uat,
     prod = var.sslcert_prod
   }
   sslkey = {
-    dev = var.sslkey_dev,
-    uat = var.sslkey_uat,
+    dev  = var.sslkey_dev,
+    uat  = var.sslkey_uat,
     prod = var.sslkey_prod
   }
 }

@@ -127,7 +127,7 @@ resource "aws_appautoscaling_target" "ANP-ML-API" {
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
   role_arn           = module.IAM_role_ecs_ANP-ML-API-Scale.role_arn
-  depends_on = [aws_ecs_service.ANP-ML-API]
+  depends_on         = [aws_ecs_service.ANP-ML-API]
 }
 
 resource "aws_appautoscaling_policy" "ANP-ML-API-CPU" {
