@@ -71,12 +71,20 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
         },
         {
           "name" : "MLFLOW_TRACKING_URI",
-          "value" : "databricks"
+          "value" : "datalab-apa-mlflow.p893159272749.aws-amer.sanofi.com	"
         }
       ]
       secrets = [{
         "name" : "SNOWFLAKE_PASSWORD",
         "valueFrom" : aws_ssm_parameter.ANP-ML-API-SNOWFLAKE_PASSWORD.arn
+        },
+        {
+          "name" : "SSL_KEY",
+          "valueFrom" : aws_ssm_parameter.ANP-ML-API-SSL-KEY.arn
+        },
+        {
+          "name" : "SSL_CERT",
+          "valueFrom" : aws_ssm_parameter.ANP-ML-API-SSL-CERT.arn
         }
       ]
       logConfiguration : {
