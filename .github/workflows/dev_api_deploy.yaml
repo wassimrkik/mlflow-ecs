@@ -3,6 +3,9 @@ on:
     workflow_dispatch:
 
 env:
+    HTTP_PROXY: http://emea-aws-webproxy.service.cloud.local:3128
+    HTTPS_PROXY: http://emea-aws-webproxy.service.cloud.local:3128
+    NO_PROXY: 127.0.0.1,localhost,169.254.169.254,.sanofi.com,.cloud.local,sts.us-east-1.amazonaws.com,execute-api.us-east-1.amazonaws.com,s3.us-east-1.amazonaws
     TF_VAR_snowflakepassword_dev: ${{secrets.TF_VAR_SNOWFLAKEPASSWORD_DEV}}
     TF_VAR_snowflakepassword_uat: ""
     TF_VAR_snowflakepassword_prod: ""
