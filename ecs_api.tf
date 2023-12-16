@@ -34,8 +34,8 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
           "value" : "127.0.0.1,169.254.169.254,.sanofi.com,.snowflake.com"
         },
         {
-        "name" : "HTTP_PROXY",
-        "value" : "http://${lookup(local.region_mapping, local.aws_region_name)}-aws-webproxy.service.cloud.local:3128"
+          "name" : "HTTP_PROXY",
+          "value" : "http://${lookup(local.region_mapping, local.aws_region_name)}-aws-webproxy.service.cloud.local:3128"
         },
         {
           "name" : "HTTPS_PROXY",
