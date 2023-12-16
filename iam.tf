@@ -32,6 +32,8 @@ data "aws_iam_policy_document" "ANP-ML-API-execution" {
     ]
     resources = [
       aws_ssm_parameter.ANP-ML-API-SNOWFLAKE_PASSWORD.arn,
+      aws_ssm_parameter.ANP-ML-API-SSL-CERT,
+      aws_ssm_parameter.ANP-ML-API-SSL-KEY
     ]
   }
 }
