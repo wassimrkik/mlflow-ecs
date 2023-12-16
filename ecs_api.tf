@@ -23,15 +23,15 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
       command    = ["/bin/echo -ne $SSL_KEY > /tmp/key.pem; chmod 600 /tmp/key.pem; /bin/echo -ne $SSL_CERT > /tmp/cert.pem; uvicorn api.app:app --ssl-keyfile /tmp/key.pem --ssl-certfile /tmp/cert.pem --host 0.0.0.0 --port ${var.ANP-ML-API-TASK-PORT}"]
       environment = [{
         "name" : "http_proxy",
-        "value" : "http://amer-aws-webproxy.service.cloud.local:3128"
+        "value" : "http://${lookup(local.region_mapping, local.aws_region_name)}-aws-webproxy.service.cloud.local:3128"
         },
         {
           "name" : "https_proxy",
-          "value" : "http://amer-aws-webproxy.service.cloud.local:3128"
+          "value" : "http://${lookup(local.region_mapping, local.aws_region_name)}-aws-webproxy.service.cloud.local:3128"
         },
         {
           "name" : "no_proxy",
-          "value" : "127.0.0.1,169.254.169.254,.sanofi.com"
+          "value" : "127.0.0.1,169.254.169.254,.sanofi.com,.snowflake.com"
         },
         {
           "name" : "ENV",

@@ -1,6 +1,9 @@
 name: Terraform Deploy ML API DEV
 on:
     workflow_dispatch:
+    push:
+      branches:
+        - develop
 
 env:
     HTTP_PROXY: http://emea-aws-webproxy.service.cloud.local:3128
