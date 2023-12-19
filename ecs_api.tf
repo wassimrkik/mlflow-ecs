@@ -23,68 +23,68 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
       command    = ["/bin/echo -ne $SSL_KEY > /tmp/key.pem; chmod 600 /tmp/key.pem; /bin/echo -ne $SSL_CERT > /tmp/cert.pem; uvicorn api.app:app --ssl-keyfile /tmp/key.pem --ssl-certfile /tmp/cert.pem --host 0.0.0.0 --port ${var.ANP-ML-API-TASK-PORT}"]
       environment = [
         {
-          "name" : "HTTP_PROXY",
-          "value" : ""
-        },
-        {
-          "name" : "HTTPS_PROXY",
-          "value" : ""
-        },
-        {
-          "name" : "https_proxy",
-          "value" : ""
+          "name" : "SNOWFLAKE_ACCOUNT",
+          "value" : "sanofi-emea_chc"
         },
         {
           "name" : "http_proxy",
-          "value" : ""
-        },
-        {
-          "name" : "NO_PROXY",
-          "value" : ""
+          "value" : "http://emea-aws-webproxy.service.cloud.local:3128"
         },
         {
           "name" : "no_proxy",
-          "value" : ""
+          "value" : "127.0.0.1,169.254.169.254,.sanofi.com,.snowflakecomputing.com,.amazonaws.com"
         },
         {
-          "name" : "ENV",
-          "value" : var.ANP-ML-API-ENV
-        },
-        {
-          "name" : "AWS_DEFAULT_REGION",
-          "value" : local.aws_region_name
+          "name" : "NO_PROXY",
+          "value" : "127.0.0.1,169.254.169.254,.sanofi.com,.snowflakecomputing.com,.amazonaws.com"
         },
         {
           "name" : "COMPUTESERVER",
-          "value" : var.ANP-ML-SOLVER
+          "value" : "datalab-gurobi.p015068701664.aws-emea.sanofi.com:61000"
         },
         {
-          "name" : "SNOWFLAKE_ACCOUNT",
-          "value" : var.APA-ML-BE-SNOWFLAKE-ACCOUNT
+          "name" : "https_proxy",
+          "value" : "http://emea-aws-webproxy.service.cloud.local:3128"
         },
         {
           "name" : "SNOWFLAKE_ROLE",
-          "value" : var.APA-ML-BE-SNOWFLAKE-ROLE
+          "value" : "APA_DEV_TRANSFORM_PROC"
         },
         {
-          "name" : "SNOWFLAKE_USER",
-          "value" : var.APA-ML-BE-SNOWFLAKE-USER
+          "name" : "AWS_DEFAULT_REGION",
+          "value" : "eu-west-1"
         },
         {
-          "name" : "SNOWFLAKE_WAREHOUSE",
-          "value" : var.APA-ML-BE-SNOWFLAKE-WH
+          "name" : "HTTP_PROXY",
+          "value" : "http://emea-aws-webproxy.service.cloud.local:3128"
         },
         {
-          "name" : "SNOWFLAKE_DB_APA",
-          "value" : var.APA-ML-BE-SNOWFLAKE-DB
+          "name" : "ENV",
+          "value" : "dev"
         },
         {
           "name" : "S3_BUCKET_NAME_APA",
-          "value" : var.APA-ML-BE-S3-BUCKET
+          "value" : "sanofi-chc-emea-anp-workbench-dev"
+        },
+        {
+          "name" : "HTTPS_PROXY",
+          "value" : "http://emea-aws-webproxy.service.cloud.local:3128"
+        },
+        {
+          "name" : "SNOWFLAKE_WAREHOUSE",
+          "value" : "APA_DEV_WH_TRANSFORM"
         },
         {
           "name" : "MLFLOW_TRACKING_URI",
           "value" : "datalab-apa-mlflow.p893159272749.aws-amer.sanofi.com"
+        },
+        {
+          "name" : "SNOWFLAKE_USER",
+          "value" : "APA_DEV_TRANSFORM"
+        },
+        {
+          "name" : "SNOWFLAKE_DB_APA",
+          "value" : "apa_dev"
         }
       ]
       secrets = [{
