@@ -48,10 +48,7 @@ module "IAM_role_ANP-ML-API-Task" {
 data "aws_iam_policy_document" "ANP-ML-API-Task" {
   statement {
     actions = [
-      "s3:ListBucket",
-      "s3:ListBucketVersions",
-      "s3:GetBucketLocation"
-    ]
+    "s3:*"]
     resources = ["arn:aws:s3:::sanofi-chc-emea-anp-workbench-dev"]
   }
   statement {
@@ -70,13 +67,9 @@ data "aws_iam_policy_document" "ANP-ML-API-Task" {
   }
   statement {
     actions = [
-      "s3:DeleteObject",
-      "s3:GetObject",
-      "s3:GetObjectVersion",
-      "s3:PutObject",
-      "s3:PutObjectAcl"
+      "s3:*"
     ]
-    resources = ["arn:aws:s3:::sanofi-chc-emea-anp-workbench-dev/*"]
+    resources = ["arn:aws:s3:::sanofi-chc-emea-anp-workbench-dev/*", "arn:aws:s3:::sanofi-chc-emea-anp-workbench-dev/"]
   }
 }
 
