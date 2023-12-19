@@ -20,7 +20,7 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
       name       = "ANP-ML-API"
       image      = "${local.aws_account_id}.dkr.ecr.${local.aws_region_name}.amazonaws.com/anp/ml-api:${var.ANP-ML-API-CONTAINER-TAG}"
       entryPoint = ["sh", "-c"]
-      command    = ["/bin/echo -ne $SSL_KEY > /tmp/key.pem; chmod 600 /tmp/key.pem; /bin/echo -ne $SSL_CERT > /tmp/cert.pem; uvicorn src.app:app --ssl-keyfile /tmp/key.pem --ssl-certfile /tmp/cert.pem --host 0.0.0.0 --port ${var.ANP-ML-API-TASK-PORT}"]
+      command    = ["/bin/echo -ne $SSL_KEY > /tmp/key.pem; chmod 600 /tmp/key.pem; /bin/echo -ne $SSL_CERT > /tmp/cert.pem; uvicorn api.app:app --ssl-keyfile /tmp/key.pem --ssl-certfile /tmp/cert.pem --host 0.0.0.0 --port ${var.ANP-ML-API-TASK-PORT}"]
       environment = [{
         "name" : "http_proxy",
         "value" : "http://${lookup(local.region_mapping, local.aws_region_name)}-aws-webproxy.service.cloud.local:3128"
