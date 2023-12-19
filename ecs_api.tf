@@ -15,14 +15,37 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
   requires_compatibilities = ["FARGATE"]
   cpu                      = var.ANP-ML-API-TASK-CPU
   memory                   = var.ANP-ML-API-TASK-MEM
-  ########### revision 9 healthy ################
   container_definitions = jsonencode([
     {
       name       = "ANP-ML-API"
       image      = "${local.aws_account_id}.dkr.ecr.${local.aws_region_name}.amazonaws.com/anp/ml-api:${var.ANP-ML-API-CONTAINER-TAG}"
       entryPoint = ["sh", "-c"]
-      command    = ["/bin/echo -ne $SSL_KEY > /tmp/key.pem; chmod 600 /tmp/key.pem; /bin/echo -ne $SSL_CERT > /tmp/cert.pem; unset HTTPS_PROXY; unset NO_PROXY; uvicorn api.app:app --ssl-keyfile /tmp/key.pem --ssl-certfile /tmp/cert.pem --host 0.0.0.0 --port ${var.ANP-ML-API-TASK-PORT}"]
+      command    = ["/bin/echo -ne $SSL_KEY > /tmp/key.pem; chmod 600 /tmp/key.pem; /bin/echo -ne $SSL_CERT > /tmp/cert.pem; uvicorn api.app:app --ssl-keyfile /tmp/key.pem --ssl-certfile /tmp/cert.pem --host 0.0.0.0 --port ${var.ANP-ML-API-TASK-PORT}"]
       environment = [
+        {
+          "name" : "HTTP_PROXY",
+          "value" : ""
+        },
+        {
+          "name" : "HTTPS_PROXY",
+          "value" : ""
+        },
+        {
+          "name" : "https_proxy",
+          "value" : ""
+        },
+        {
+          "name" : "http_proxy",
+          "value" : ""
+        },
+        {
+          "name" : "NO_PROXY",
+          "value" : "127.0.0.1,169.254.169.254,.sanofi.com,.snowflakecomputing.com,.amazonaws.com"
+        },
+        {
+          "name" : "no_proxy",
+          "value" : "127.0.0.1,169.254.169.254,.sanofi.com,.snowflakecomputing.com,.amazonaws.com"
+        },
         {
           "name" : "ENV",
           "value" : var.ANP-ML-API-ENV
