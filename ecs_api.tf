@@ -28,15 +28,15 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
         },
         {
           "name" : "http_proxy",
-          "value" : "http://emea-aws-webproxy.service.cloud.local:3128"
+          "value" : ""
         },
         {
           "name" : "no_proxy",
-          "value" : "127.0.0.1,169.254.169.254,.sanofi.com,.snowflakecomputing.com,.amazonaws.com"
+          "value" : ""
         },
         {
           "name" : "NO_PROXY",
-          "value" : "127.0.0.1,169.254.169.254,.sanofi.com,.snowflakecomputing.com,.amazonaws.com"
+          "value" : ""
         },
         {
           "name" : "COMPUTESERVER",
@@ -44,7 +44,7 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
         },
         {
           "name" : "https_proxy",
-          "value" : "http://emea-aws-webproxy.service.cloud.local:3128"
+          "value" : ""
         },
         {
           "name" : "SNOWFLAKE_ROLE",
@@ -56,7 +56,7 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
         },
         {
           "name" : "HTTP_PROXY",
-          "value" : "http://emea-aws-webproxy.service.cloud.local:3128"
+          "value" : ""
         },
         {
           "name" : "ENV",
@@ -68,7 +68,7 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
         },
         {
           "name" : "HTTPS_PROXY",
-          "value" : "http://emea-aws-webproxy.service.cloud.local:3128"
+          "value" : ""
         },
         {
           "name" : "SNOWFLAKE_WAREHOUSE",
