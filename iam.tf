@@ -69,7 +69,7 @@ data "aws_iam_policy_document" "ANP-ML-API-Task" {
     actions = [
       "s3:*"
     ]
-    resources = ["arn:aws:s3:::sanofi-chc-emea-anp-workbench-dev/*", "arn:aws:s3:::sanofi-chc-emea-anp-workbench-dev/","arn:aws:s3:::sanofi-chc-emea-anp-workbench-dev/apa/*"]
+    resources = ["arn:aws:s3:::sanofi-chc-emea-anp-workbench-dev/*", "arn:aws:s3:::sanofi-chc-emea-anp-workbench-dev/", "arn:aws:s3:::sanofi-chc-emea-anp-workbench-dev/apa/*"]
   }
 }
 
