@@ -76,7 +76,19 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
         },
         {
           "name" : "MLFLOW_TRACKING_URI",
-          "value" : "datalab-apa-mlflow.p893159272749.aws-amer.sanofi.com"
+          "value" : "databricks"
+        },
+        {
+          "name" : "DATABRICKS_HOST",
+          "value" : "https://sanofi-datalab-development-amer.cloud.databricks.com/"
+        },
+        {
+          "name" : "DATABRICKS_SECRET_REGION",
+          "value" : "eu-west-1"
+        },
+        {
+          "name" : "DATABRICKS_SECRET_ID",
+          "value" : "arn:aws:secretsmanager:eu-west-1:698178790353:secret:apa/databricks-mlflow-service-principal-hJWyMQ"
         },
         {
           "name" : "SNOWFLAKE_USER",

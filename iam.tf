@@ -63,7 +63,7 @@ data "aws_iam_policy_document" "ANP-ML-API-Task" {
     actions = [
       "secretsmanager:GetSecretValue"
     ]
-    resources = ["arn:aws:secretsmanager:eu-west-1:698178790353:secret:apa/ml-api-token-xE6p0n"]
+    resources = ["arn:aws:secretsmanager:eu-west-1:698178790353:secret:apa/ml-api-token-xE6p0n", "arn:aws:secretsmanager:eu-west-1:698178790353:secret:apa/databricks-mlflow-service-principal-hJWyMQ"]
   }
   statement {
     actions = [
