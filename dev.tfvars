@@ -18,3 +18,4 @@ DATABRICKS_SECRET_ID        = "arn:aws:secretsmanager:eu-west-1:698178790353:sec
 SNOWFLAKE_USER              = "APA_DEV_TRANSFORM"
 SNOWFLAKE_DB_APA            = "apa_dev"
 DATABRICKS_HOST             = "https://sanofi-datalab-development-amer.cloud.databricks.com/"
+APA-ML-BE-API-TOKEN-ARN     = "arn:aws:secretsmanager:eu-west-1:698178790353:secret:apa/ml-api-token-xE6p0n"

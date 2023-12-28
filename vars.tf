@@ -110,6 +110,9 @@ variable "sslkey_prod" {
   sensitive = true
 }
 
+variable "APA-ML-BE-API-TOKEN-ARN" {
+  type = string
+}
 variable "sslcert_dev" {
   type      = string
   sensitive = true

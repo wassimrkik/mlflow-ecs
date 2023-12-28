@@ -49,7 +49,7 @@ data "aws_iam_policy_document" "ANP-ML-API-Task" {
   statement {
     actions = [
     "s3:*"]
-    resources = ["arn:aws:s3:::sanofi-chc-emea-anp-workbench-dev"]
+    resources = ["arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}"]
   }
   statement {
     actions = [
@@ -63,13 +63,13 @@ data "aws_iam_policy_document" "ANP-ML-API-Task" {
     actions = [
       "secretsmanager:GetSecretValue"
     ]
-    resources = ["arn:aws:secretsmanager:eu-west-1:698178790353:secret:apa/ml-api-token-xE6p0n", "arn:aws:secretsmanager:eu-west-1:698178790353:secret:apa/databricks-mlflow-service-principal-hJWyMQ"]
+    resources = [var.DATABRICKS_SECRET_ID, var.APA-ML-BE-API-TOKEN-ARN]
   }
   statement {
     actions = [
       "s3:*"
     ]
-    resources = ["arn:aws:s3:::sanofi-chc-emea-anp-workbench-dev/*", "arn:aws:s3:::sanofi-chc-emea-anp-workbench-dev/", "arn:aws:s3:::sanofi-chc-emea-anp-workbench-dev/apa/*"]
+    resources = ["arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}/*", "arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}/", "arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}/apa/*"]
   }
 }
 
