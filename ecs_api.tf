@@ -60,11 +60,11 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
         },
         {
           "name" : "ENV",
-          "value" : "dev"
+          "value" : var.ANP-ML-API-ENV
         },
         {
           "name" : "S3_BUCKET_NAME_APA",
-          "value" : "sanofi-chc-emea-anp-workbench-dev"
+          "value" : var.ANP-ML-API-S3-BUCKET
         },
         {
           "name" : "HTTPS_PROXY",
@@ -72,7 +72,7 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
         },
         {
           "name" : "SNOWFLAKE_WAREHOUSE",
-          "value" : "APA_DEV_WH_TRANSFORM"
+          "value" : var.SNOWFLAKE_WAREHOUSE
         },
         {
           "name" : "MLFLOW_TRACKING_URI",
@@ -80,7 +80,7 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
         },
         {
           "name" : "DATABRICKS_HOST",
-          "value" : "https://sanofi-datalab-development-amer.cloud.databricks.com/"
+          "value" : var.DATABRICKS_HOST
         },
         {
           "name" : "DATABRICKS_SECRET_REGION",
@@ -88,15 +88,15 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
         },
         {
           "name" : "DATABRICKS_SECRET_ID",
-          "value" : "arn:aws:secretsmanager:eu-west-1:698178790353:secret:apa/databricks-mlflow-service-principal-hJWyMQ"
+          "value" : var.DATABRICKS_SECRET_ID
         },
         {
           "name" : "SNOWFLAKE_USER",
-          "value" : "APA_DEV_TRANSFORM"
+          "value" : var.SNOWFLAKE_USER
         },
         {
           "name" : "SNOWFLAKE_DB_APA",
-          "value" : "apa_dev"
+          "value" : var.SNOWFLAKE_DB_APA
         }
       ]
       secrets = [{

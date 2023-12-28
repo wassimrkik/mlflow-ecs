@@ -2,6 +2,28 @@ variable "ANP-ML-API-ENV" {
   type = string
 }
 
+variable "ANP-ML-API-S3-BUCKET" {
+  type = string
+}
+
+variable "SNOWFLAKE_WAREHOUSE" {
+  type = string
+
+}
+
+variable "DATABRICKS_SECRET_ID" {
+  type = string
+}
+variable "SNOWFLAKE_USER" {
+  type = string
+}
+
+variable "SNOWFLAKE_DB_APA" {
+  type = string
+}
+variable "DATABRICKS_HOST" {
+  type = string
+}
 variable "ANP-ML-API-TASK-CPU" {
   type = number
 }
@@ -57,6 +79,10 @@ variable "snowflakepassword_dev" {
   sensitive = true
 }
 
+variable "snowflakepassword_qa" {
+  type      = string
+  sensitive = true
+}
 variable "snowflakepassword_uat" {
   type      = string
   sensitive = true
@@ -71,6 +97,10 @@ variable "sslkey_dev" {
   type      = string
   sensitive = true
 }
+variable "sslkey_qa" {
+  type      = string
+  sensitive = true
+}
 variable "sslkey_uat" {
   type      = string
   sensitive = true
@@ -81,6 +111,11 @@ variable "sslkey_prod" {
 }
 
 variable "sslcert_dev" {
+  type      = string
+  sensitive = true
+}
+
+variable "sslcert_qa" {
   type      = string
   sensitive = true
 }

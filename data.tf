@@ -33,16 +33,19 @@ locals {
   }
   snowflakepassword = {
     dev  = var.snowflakepassword_dev,
+    qa   = var.snowflakepassword_qa,
     uat  = var.snowflakepassword_uat,
     prod = var.snowflakepassword_prod
   }
   sslcert = {
     dev  = var.sslcert_dev,
+    qa   = var.sslcert_qa,
     uat  = var.sslcert_uat,
     prod = var.sslcert_prod
   }
   sslkey = {
     dev  = var.sslkey_dev,
+    qa   = var.sslkey_qa,
     uat  = var.sslkey_uat,
     prod = var.sslkey_prod
   }
