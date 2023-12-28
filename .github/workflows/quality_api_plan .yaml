@@ -3,7 +3,7 @@ on:
     workflow_dispatch:
     push:
         branches:
-            - qualty
+            - quality
 env:
     TF_VAR_snowflakepassword_dev: ""
     TF_VAR_snowflakepassword_qa: ${{secrets.TF_VAR_SNOWFLAKEPASSWORD_QA}}
