@@ -58,7 +58,7 @@ jobs:
 
   plan-terraform:
     runs-on: [self-hosted, atmos-aws-shared-gh-runner]
-    environment: develop
+    environment: quality
 
     steps:
         - name: Checkout
