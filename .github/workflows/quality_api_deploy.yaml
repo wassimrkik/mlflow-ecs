@@ -1,9 +1,7 @@
 name: Terraform Deploy ML API QA
 on:
     workflow_dispatch:
-    pull_request:
-      branches:
-        - quality
+
 
 env:
     TF_VAR_snowflakepassword_dev: ""
@@ -54,7 +52,7 @@ jobs:
         - name: plan
           run: |
             terraform init -backend-config="bucket=sanofi-chc-emea-anp-terraformstate-qa" -backend-config="region=eu-west-1"
-            terraform plan -var-file="qualtiy.tfvars" -out "anp-apa-ml-be-infrastructure-qa-planfile"
+            terraform plan -var-file="quality.tfvars" -out "anp-apa-ml-be-infrastructure-qa-planfile"
         - name: apply
           run: |
             terraform apply -input=false "anp-apa-ml-be-infrastructure-qa-planfile"
