@@ -6,14 +6,14 @@ on:
         - develop
 
 env:
-    TF_VAR_snowflakepassword_dev: ""
-    TF_VAR_snowflakepassword_qa: ${{secrets.TF_VAR_SNOWFLAKEPASSWORD_QA}}
+    TF_VAR_snowflakepassword_dev: "${{secrets.TF_VAR_SNOWFLAKEPASSWORD_DEV}}"
+    TF_VAR_snowflakepassword_qa: ""
     TF_VAR_snowflakepassword_uat: ""
     TF_VAR_snowflakepassword_prod: ""
-    TF_VAR_sslcert_dev: ""
-    TF_VAR_sslkey_dev: ""
-    TF_VAR_sslcert_qa: ${{secrets.TF_VAR_PREDICTSSLCERT_QA}}
-    TF_VAR_sslkey_qa: ${{secrets.TF_VAR_PREDICTSSLKEY_QA}}
+    TF_VAR_sslcert_dev: ${{secrets.TF_VAR_PREDICTSSLCERT_DEV}}
+    TF_VAR_sslkey_dev: ${{secrets.TF_VAR_PREDICTSSLKEY_DEV}}
+    TF_VAR_sslcert_qa: ""
+    TF_VAR_sslkey_qa: ""
     TF_VAR_sslcert_uat: ""
     TF_VAR_sslcert_prod: ""
     TF_VAR_sslkey_uat: ""
