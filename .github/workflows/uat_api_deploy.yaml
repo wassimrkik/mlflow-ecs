@@ -1,4 +1,4 @@
-name: Terraform Deploy ML API DEV
+name: Terraform Deploy ML API UAT
 on:
     workflow_dispatch:
 
