@@ -52,6 +52,5 @@ jobs:
           run: |
             terraform init -backend-config="bucket=sanofi-chc-emea-anp-terraformstate-prod" -backend-config="region=eu-west-1"
             terraform plan -var-file="prod.tfvars" -out "anp-apa-ml-be-infrastructure-prod-planfile"
-        - name: apply
 
                 
