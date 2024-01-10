@@ -1,9 +1,7 @@
 name: Terraform Plan ML API DEV
 on:
     workflow_dispatch:
-    push:
-        branches:
-            - develop
+
 env:
     TF_VAR_snowflakepassword_dev: ${{secrets.TF_VAR_SNOWFLAKEPASSWORD_DEV}}
     TF_VAR_snowflakepassword_qa: ${{secrets.TF_VAR_SNOWFLAKEPASSWORD_QA}}

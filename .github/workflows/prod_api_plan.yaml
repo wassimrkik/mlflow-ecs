@@ -1,28 +1,28 @@
-name: Terraform Deploy ML API UAT
+name: Terraform Plan ML API PROD
 on:
     workflow_dispatch:
 
 
 env:
-    TF_VAR_snowflakepassword_dev: 
+    TF_VAR_snowflakepassword_dev: ""
     TF_VAR_snowflakepassword_qa: ""
-    TF_VAR_snowflakepassword_uat: ${{secrets.TF_VAR_SNOWFLAKEPASSWORD_UAT}}
-    TF_VAR_snowflakepassword_prod: ""
+    TF_VAR_snowflakepassword_uat: ""
+    TF_VAR_snowflakepassword_prod: "${{secrets.TF_VAR_SNOWFLAKEPASSWORD_PROD}}"
     TF_VAR_sslcert_dev: ""
     TF_VAR_sslkey_dev: ""
     TF_VAR_sslcert_qa: ""
     TF_VAR_sslkey_qa: ""
-    TF_VAR_sslcert_uat: ${{secrets.TF_VAR_PREDICTSSLCERT_UAT}}
-    TF_VAR_sslcert_prod: ""
-    TF_VAR_sslkey_uat: ${{secrets.TF_VAR_PREDICTSSLKEY_UAT}}
-    TF_VAR_sslkey_prod: ""
+    TF_VAR_sslcert_uat: ""
+    TF_VAR_sslcert_prod: ${{secrets.TF_VAR_PREDICTSSLCERT_PROD}}
+    TF_VAR_sslkey_uat: ""
+    TF_VAR_sslkey_prod: ${{secrets.TF_VAR_PREDICTSSLKEY_PROD}}
     HTTP_PROXY: http://emea-aws-webproxy.service.cloud.local:3128
     HTTPS_PROXY: http://emea-aws-webproxy.service.cloud.local:3128
     NO_PROXY: 127.0.0.1,localhost,169.254.169.254,.sanofi.com,.cloud.local,sts.us-east-1.amazonaws.com,execute-api.us-east-1.amazonaws.com,s3.us-east-1.amazonaws
 jobs:
   plan-terraform:
     runs-on: [self-hosted, atmos-aws-shared-gh-runner]
-    environment: release
+    environment: master
 
     steps:
         - name: Checkout
@@ -50,9 +50,8 @@ jobs:
 
         - name: plan
           run: |
-            terraform init -backend-config="bucket=sanofi-chc-emea-anp-terraformstate-uat" -backend-config="region=eu-west-1"
-            terraform plan -var-file="uat.tfvars" -out "anp-apa-ml-be-infrastructure-uat-planfile"
+            terraform init -backend-config="bucket=sanofi-chc-emea-anp-terraformstate-prod" -backend-config="region=eu-west-1"
+            terraform plan -var-file="prod.tfvars" -out "anp-apa-ml-be-infrastructure-prod-planfile"
         - name: apply
-          run: |
-            terraform apply -input=false "anp-apa-ml-be-infrastructure-uat-planfile"
+
                 

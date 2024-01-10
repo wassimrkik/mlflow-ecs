@@ -1,4 +1,4 @@
-name: Terraform Deploy ML API UAT
+name: Terraform Plan ML API UAT
 on:
     workflow_dispatch:
 
@@ -52,7 +52,5 @@ jobs:
           run: |
             terraform init -backend-config="bucket=sanofi-chc-emea-anp-terraformstate-uat" -backend-config="region=eu-west-1"
             terraform plan -var-file="uat.tfvars" -out "anp-apa-ml-be-infrastructure-uat-planfile"
-        - name: apply
-          run: |
-            terraform apply -input=false "anp-apa-ml-be-infrastructure-uat-planfile"
+
                 
