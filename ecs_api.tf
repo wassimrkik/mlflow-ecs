@@ -48,7 +48,7 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
         },
         {
           "name" : "SNOWFLAKE_ROLE",
-          "value" : "APA_DEV_TRANSFORM_PROC"
+          "value" : var.APA-ML-BE-SNOWFLAKE-ROLE
         },
         {
           "name" : "AWS_DEFAULT_REGION",
