@@ -1,5 +1,5 @@
 resource "aws_security_group" "ANP-ML-API" {
-  name        = "ANP-ML-API"
+  name        = "ANP-MLDEV-API"
   description = "Allow inbound traffic to ANP-ML-API service"
   vpc_id      = data.aws_vpc.main.id
   ingress {

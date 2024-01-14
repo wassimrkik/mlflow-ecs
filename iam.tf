@@ -1,6 +1,6 @@
 module "IAM_role_ANP-ML-API-execution" {
   source      = "./module"
-  role_name   = "ANP-APA-ML-API-Execution"
+  role_name   = "ANP-APA-ML-API-MLDEV-Execution"
   service     = "ecs-tasks"
   policy_json = data.aws_iam_policy_document.ANP-ML-API-execution.json
 }
@@ -40,7 +40,7 @@ data "aws_iam_policy_document" "ANP-ML-API-execution" {
 
 module "IAM_role_ANP-ML-API-Task" {
   source      = "./module"
-  role_name   = "ANP-ML-API-Task"
+  role_name   = "ANP-ML-API-MLDEV-Task"
   service     = "ecs-tasks"
   policy_json = data.aws_iam_policy_document.ANP-ML-API-Task.json
 }
@@ -75,7 +75,7 @@ data "aws_iam_policy_document" "ANP-ML-API-Task" {
 
 module "IAM_role_ecs_ANP-ML-API-Scale" {
   source      = "./module"
-  role_name   = "ANP-ML-API-Scale"
+  role_name   = "ANP-ML-API-MLDEV-Scale"
   service     = "application-autoscaling"
   policy_json = data.aws_iam_policy_document.ANP-ML-API-Scale.json
 }

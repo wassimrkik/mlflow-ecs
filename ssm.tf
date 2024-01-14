@@ -1,15 +1,15 @@
 resource "aws_kms_key" "ANP-ML-API" {
-  description         = "ANP-ML-API"
+  description         = "ANP-MLDEV-API"
   enable_key_rotation = true
 }
 
 resource "aws_kms_alias" "ANP-ML-API-ALIAS" {
-  name          = "alias/ANP/SSM"
+  name          = "alias/ANP/SSM-MLDEV"
   target_key_id = aws_kms_key.ANP-ML-API.id
 }
 
 resource "aws_ssm_parameter" "ANP-ML-API-SNOWFLAKE_PASSWORD" {
-  name       = "/anp/snowflake"
+  name       = "/anp/snowflake-MLDEV"
   type       = "SecureString"
   value      = lookup(local.snowflakepassword, var.ANP-ML-API-ENV)
   key_id     = aws_kms_key.ANP-ML-API.key_id
@@ -17,7 +17,7 @@ resource "aws_ssm_parameter" "ANP-ML-API-SNOWFLAKE_PASSWORD" {
 }
 
 resource "aws_ssm_parameter" "ANP-ML-API-SSL-CERT" {
-  name       = "/anp/sslcert"
+  name       = "/anp/sslcert-MLDEV"
   type       = "SecureString"
   value      = lookup(local.sslcert, var.ANP-ML-API-ENV)
   key_id     = aws_kms_key.ANP-ML-API.key_id
@@ -25,7 +25,7 @@ resource "aws_ssm_parameter" "ANP-ML-API-SSL-CERT" {
 }
 
 resource "aws_ssm_parameter" "ANP-ML-API-SSL-KEY" {
-  name       = "/anp/sslkey"
+  name       = "/anp/sslkey-MLDEV"
   type       = "SecureString"
   value      = lookup(local.sslkey, var.ANP-ML-API-ENV)
   key_id     = aws_kms_key.ANP-ML-API.key_id

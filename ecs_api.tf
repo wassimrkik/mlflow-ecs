@@ -1,5 +1,5 @@
 resource "aws_ecs_cluster" "ANP-ML-API" {
-  name = "ANP-ML-API"
+  name = "ANP-MLDEV-API"
   setting {
     name  = "containerInsights"
     value = "enabled"
@@ -8,7 +8,7 @@ resource "aws_ecs_cluster" "ANP-ML-API" {
 }
 
 resource "aws_ecs_task_definition" "ANP-ML-API" {
-  family                   = "ANP-ML-API"
+  family                   = "ANP-MLDEV-API"
   task_role_arn            = module.IAM_role_ANP-ML-API-Task.role_arn
   execution_role_arn       = module.IAM_role_ANP-ML-API-execution.role_arn
   network_mode             = "awsvpc"
@@ -17,10 +17,10 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
   memory                   = var.ANP-ML-API-TASK-MEM
   container_definitions = jsonencode([
     {
-      name       = "ANP-ML-API"
-      image      = "${local.aws_account_id}.dkr.ecr.${local.aws_region_name}.amazonaws.com/anp/ml-api:${var.ANP-ML-API-CONTAINER-TAG}"
+      name       = "ANP-MLDEV-API"
+      image      = "${local.aws_account_id}.dkr.ecr.${local.aws_region_name}.amazonaws.com/anp/mldev-api:${var.ANP-ML-API-CONTAINER-TAG}"
       entryPoint = ["sh", "-c"]
-      command    = ["/bin/echo -ne $SSL_KEY > /tmp/key.pem; chmod 600 /tmp/key.pem; /bin/echo -ne $SSL_CERT > /tmp/cert.pem; uvicorn api.app:app --ssl-keyfile /tmp/key.pem --ssl-certfile /tmp/cert.pem --host 0.0.0.0 --port ${var.ANP-ML-API-TASK-PORT}"]
+      command    = ["/bin/echo -ne $SSL_KEY > /tmp/key.pem; chmod 600 /tmp/key.pem; /bin/echo -ne $SSL_CERT > /tmp/cert.pem; uvicorn src.app:app --ssl-keyfile /tmp/key.pem --ssl-certfile /tmp/cert.pem --host 0.0.0.0 --port ${var.ANP-ML-API-TASK-PORT}"]
       environment = [
         {
           "name" : "SNOWFLAKE_ACCOUNT",
@@ -79,18 +79,6 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
           "value" : "databricks"
         },
         {
-          "name" : "DATABRICKS_HOST",
-          "value" : var.DATABRICKS_HOST
-        },
-        {
-          "name" : "DATABRICKS_SECRET_REGION",
-          "value" : "eu-west-1"
-        },
-        {
-          "name" : "DATABRICKS_SECRET_ID",
-          "value" : var.DATABRICKS_SECRET_ID
-        },
-        {
           "name" : "SNOWFLAKE_USER",
           "value" : var.SNOWFLAKE_USER
         },
@@ -116,7 +104,7 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
         "logDriver" : "awslogs",
         "options" : {
           "awslogs-region" : local.aws_region_name,
-          "awslogs-group" : "/ecs/Anp-APA-ML-API",
+          "awslogs-group" : "/ecs/Anp-APA-MLDEV-API",
           "awslogs-stream-prefix" : "ecs"
         }
       }
@@ -132,7 +120,7 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
   )
 }
 resource "aws_ecs_service" "ANP-ML-API" {
-  name            = "ANP-ML-API-service"
+  name            = "ANP-ML-API-MLDEV"
   cluster         = aws_ecs_cluster.ANP-ML-API.id
   task_definition = aws_ecs_task_definition.ANP-ML-API.arn
   desired_count   = 1
@@ -144,7 +132,7 @@ resource "aws_ecs_service" "ANP-ML-API" {
   }
   load_balancer {
     target_group_arn = aws_lb_target_group.ANP-ML-API.arn
-    container_name   = "ANP-ML-API"
+    container_name   = "ANP-ML-API-MLDEV"
     container_port   = var.ANP-ML-API-TASK-PORT
   }
   lifecycle {
@@ -156,7 +144,7 @@ resource "aws_ecs_service" "ANP-ML-API" {
 resource "aws_appautoscaling_target" "ANP-ML-API" {
   max_capacity       = var.ANP-ML-API-CAPACITY
   min_capacity       = 1
-  resource_id        = "service/ANP-ML-API/ANP-ML-API-service"
+  resource_id        = "service/ANP-MLDEV-API/ANP-ML-API-MLDEV"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
   role_arn           = module.IAM_role_ecs_ANP-ML-API-Scale.role_arn
@@ -164,7 +152,7 @@ resource "aws_appautoscaling_target" "ANP-ML-API" {
 }
 
 resource "aws_appautoscaling_policy" "ANP-ML-API-CPU" {
-  name               = "ANP-ML-API-CPU"
+  name               = "ANP-MLDEV-API-CPU"
   policy_type        = "TargetTrackingScaling"
   resource_id        = aws_appautoscaling_target.ANP-ML-API.resource_id
   scalable_dimension = aws_appautoscaling_target.ANP-ML-API.scalable_dimension
@@ -178,7 +166,7 @@ resource "aws_appautoscaling_policy" "ANP-ML-API-CPU" {
 }
 
 resource "aws_appautoscaling_policy" "ANP-APA-ML-BE-Predict-MEM" {
-  name               = "ANP-APA-ML-BE-Predict-MEM"
+  name               = "ANP-MLDEV-API-MEM"
   policy_type        = "TargetTrackingScaling"
   resource_id        = aws_appautoscaling_target.ANP-ML-API.resource_id
   scalable_dimension = aws_appautoscaling_target.ANP-ML-API.scalable_dimension

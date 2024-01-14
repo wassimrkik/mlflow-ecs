@@ -1,5 +1,5 @@
 resource "aws_lb" "ANP-ML-API" {
-  name                             = "ANP-ML-API"
+  name                             = "ANP-MLDEV-API"
   internal                         = true
   load_balancer_type               = "network"
   subnets                          = data.aws_subnet_ids.subnets.ids
@@ -8,7 +8,7 @@ resource "aws_lb" "ANP-ML-API" {
 }
 
 resource "aws_lb_target_group" "ANP-ML-API" {
-  name                 = "ANP-ML-API"
+  name                 = "ANP-MLDEV-API"
   port                 = var.ANP-ML-API-TASK-PORT
   protocol             = "TCP"
   target_type          = "ip"
