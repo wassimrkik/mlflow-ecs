@@ -17,7 +17,7 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
   memory                   = var.ANP-ML-API-TASK-MEM
   container_definitions = jsonencode([
     {
-      name       = "ANP-MLDEV-API"
+      name       = "ANP-ML-API-MLDEV"
       image      = "${local.aws_account_id}.dkr.ecr.${local.aws_region_name}.amazonaws.com/anp/mldev-api:${var.ANP-ML-API-CONTAINER-TAG}"
       entryPoint = ["sh", "-c"]
       command    = ["/bin/echo -ne $SSL_KEY > /tmp/key.pem; chmod 600 /tmp/key.pem; /bin/echo -ne $SSL_CERT > /tmp/cert.pem; uvicorn src.app:app --ssl-keyfile /tmp/key.pem --ssl-certfile /tmp/cert.pem --host 0.0.0.0 --port ${var.ANP-ML-API-TASK-PORT}"]
