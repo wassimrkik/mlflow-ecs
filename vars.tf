@@ -2,6 +2,17 @@ variable "ANP-ML-API-ENV" {
   type = string
 }
 
+variable "APA-ML-BE-MLFLOW-PORT" {
+
+}
+
+variable "APA-ML-BE-MLFLOW-TASK-CPU" {
+
+}
+
+variable "APA-ML-BE-MLFLOW-TASK-MEM" {
+
+}
 variable "ANP-ML-API-S3-BUCKET" {
   type = string
 }
