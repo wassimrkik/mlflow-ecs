@@ -58,16 +58,16 @@ resource "aws_ecs_task_definition" "ANP-ML-BE-Mlflow" {
 resource "aws_ecs_service" "ANP-ML-BE-Mlflow" {
   name            = "ANP-ML-BE-Mlflow"
   cluster         = aws_ecs_cluster.ANP-ML-API.id
-  task_definition = aws_ecs_task_definition.ANP-ML-BE-Mlflow[count.index].arn
+  task_definition = aws_ecs_task_definition.ANP-ML-BE-Mlflow.arn
   desired_count   = 1
   launch_type     = "FARGATE"
   network_configuration {
     subnets          = data.aws_subnet_ids.subnets.ids
-    security_groups  = [data.aws_security_group.internet_access.id, aws_security_group.ANP-ML-BE-Mlflow[count.index].id, data.aws_security_group.default.id]
+    security_groups  = [data.aws_security_group.internet_access.id, aws_security_group.ANP-ML-BE-Mlflow.id, data.aws_security_group.default.id]
     assign_public_ip = false
   }
   load_balancer {
-    target_group_arn = aws_lb_target_group.ANP-ML-BE-Mlflow[count.index].arn
+    target_group_arn = aws_lb_target_group.ANP-ML-BE-Mlflow.arn
     container_name   = "ANP-ML-BE-Mlflow"
     container_port   = var.APA-ML-BE-MLFLOW-PORT
   }
@@ -182,7 +182,7 @@ resource "aws_route53_record" "ANP-ML-BE-Mlflow" {
   name    = "anp-mlflow"
   type    = "CNAME"
   ttl     = "300"
-  records = [aws_lb.ANP-ML-BE-Mlflow[count.index].dns_name]
+  records = [aws_lb.ANP-ML-BE-Mlflow.dns_name]
   depends_on = [
     aws_lb.ANP-ML-BE-Mlflow
   ]
@@ -216,12 +216,12 @@ resource "aws_lb_target_group" "ANP-ML-BE-Mlflow" {
 }
 
 resource "aws_lb_listener" "ANP-ML-BE-Mlflow" {
-  load_balancer_arn = aws_lb.ANP-ML-BE-Mlflow[count.index].arn
+  load_balancer_arn = aws_lb.ANP-ML-BE-Mlflow.arn
   port              = 80
   protocol          = "TCP"
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.ANP-ML-BE-Mlflow[count.index].arn
+    target_group_arn = aws_lb_target_group.ANP-ML-BE-Mlflow.arn
   }
   depends_on = [
     aws_lb.ANP-ML-BE-Mlflow, aws_lb_target_group.ANP-ML-BE-Mlflow
