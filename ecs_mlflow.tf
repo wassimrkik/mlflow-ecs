@@ -84,7 +84,7 @@ resource "aws_security_group" "ANP-ML-BE-Mlflow" {
   description = "Allow inbound traffic to ANP-ML-BE-Mlflow service"
   vpc_id      = data.aws_vpc.main.id
   ingress {
-    from_port   = 0
+    from_port   = var.APA-ML-BE-MLFLOW-PORT
     to_port     = var.APA-ML-BE-MLFLOW-PORT
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
