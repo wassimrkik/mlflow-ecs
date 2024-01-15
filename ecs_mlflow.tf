@@ -57,8 +57,8 @@ resource "aws_ecs_task_definition" "ANP-ML-BE-Mlflow" {
 
 resource "aws_ecs_service" "ANP-ML-BE-Mlflow" {
   count           = var.deploy_dev_resources && var.ANP-ML-API-ENV == "dev" ? 1 : 0
-  name            = aws_ecs_cluster.ANP-ML-API.id
-  cluster         = aws_ecs_cluster.ANP-ML-BE.id
+  name            = "ANP-ML-BE-Mlflow"
+  cluster         = aws_ecs_cluster.ANP-ML-API.id
   task_definition = aws_ecs_task_definition.ANP-ML-BE-Mlflow[count.index].arn
   desired_count   = 1
   launch_type     = "FARGATE"
@@ -75,7 +75,7 @@ resource "aws_ecs_service" "ANP-ML-BE-Mlflow" {
   lifecycle {
     ignore_changes = [desired_count]
   }
-  depends_on = [aws_ecs_task_definition.ANP-ML-BE-Mlflow, aws_ecs_cluster.ANP-ML-BE]
+  depends_on = [aws_ecs_task_definition.ANP-ML-BE-Mlflow, aws_ecs_cluster.ANP-ML-API]
 }
 
 
