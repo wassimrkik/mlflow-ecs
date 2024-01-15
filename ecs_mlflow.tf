@@ -17,18 +17,7 @@ resource "aws_ecs_task_definition" "ANP-ML-BE-Mlflow" {
       image      = "mlflow:latest"
       entryPoint = ["sh", "-c"]
       command    = ["mlflow server --host 0.0.0.0 --port 80 --default-artifact-root s3://sanofi-chc-${lookup(local.region_mapping, local.aws_region_name)}-anp-mlflow-${var.ANP-ML-API-ENV} --serve-artifacts"]
-      environment = [{
-        "name" : "http_proxy",
-        "value" : "http://${lookup(local.region_mapping, local.aws_region_name)}-aws-webproxy.service.cloud.local:3128"
-        },
-        {
-          "name" : "https_proxy",
-          "value" : "http://${lookup(local.region_mapping, local.aws_region_name)}-aws-webproxy.service.cloud.local:3128"
-        },
-        {
-          "name" : "no_proxy",
-          "value" : "127.0.0.1,169.254.169.254,.sanofi.com"
-        },
+      environment = [
         {
           "name" : "ENV",
           "value" : var.ANP-ML-API-ENV
