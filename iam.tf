@@ -53,7 +53,7 @@ data "aws_iam_policy_document" "ANP-ML-API-Task" {
   }
   statement {
     actions = [
-    "efs:*"
+      "efs:*"
     ]
     resources = ["*"]
   }
