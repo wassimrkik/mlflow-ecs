@@ -1,9 +1,6 @@
-variable "deploy_dev_resources" {
-  default = true
-}
+
 
 resource "aws_ecs_task_definition" "ANP-ML-BE-Mlflow" {
-  count                    = var.deploy_dev_resources && var.ANP-ML-API-ENV == "dev" ? 1 : 0
   family                   = "ANP-ML-BE-Mlflow"
   execution_role_arn       = module.IAM_role_ANP-Mlflow-Execution.role_arn
   task_role_arn            = module.IAM_role_ANP-Mlflow-Task.role_arn
@@ -59,7 +56,6 @@ resource "aws_ecs_task_definition" "ANP-ML-BE-Mlflow" {
 }
 
 resource "aws_ecs_service" "ANP-ML-BE-Mlflow" {
-  count           = var.deploy_dev_resources && var.ANP-ML-API-ENV == "dev" ? 1 : 0
   name            = "ANP-ML-BE-Mlflow"
   cluster         = aws_ecs_cluster.ANP-ML-API.id
   task_definition = aws_ecs_task_definition.ANP-ML-BE-Mlflow[count.index].arn
@@ -84,7 +80,6 @@ resource "aws_ecs_service" "ANP-ML-BE-Mlflow" {
 
 
 resource "aws_security_group" "ANP-ML-BE-Mlflow" {
-  count       = var.deploy_dev_resources && var.ANP-ML-API-ENV == "dev" ? 1 : 0
   name        = "ANP-ML-BE-Mlflow"
   description = "Allow inbound traffic to ANP-ML-BE-Mlflow service"
   vpc_id      = data.aws_vpc.main.id
@@ -105,7 +100,6 @@ resource "aws_security_group" "ANP-ML-BE-Mlflow" {
 
 
 resource "aws_s3_bucket" "APA-ML-Mlflow" {
-  count  = var.deploy_dev_resources && var.ANP-ML-API-ENV == "dev" ? 1 : 0
   bucket = "sanofi-chc-${lookup(local.region_mapping, local.aws_region_name)}-anp-mlflow-${var.ANP-ML-API-ENV}"
   acl    = "private"
   server_side_encryption_configuration {
@@ -184,7 +178,6 @@ resource "aws_cloudwatch_log_group" "ANP-ML-BE-MLflow" {
 
 
 resource "aws_route53_record" "ANP-ML-BE-Mlflow" {
-  count   = var.deploy_dev_resources && var.ANP-ML-API-ENV == "dev" ? 1 : 0
   zone_id = data.aws_route53_zone.selected.zone_id
   name    = "anp-mlflow"
   type    = "CNAME"
@@ -197,7 +190,6 @@ resource "aws_route53_record" "ANP-ML-BE-Mlflow" {
 
 
 resource "aws_lb" "ANP-ML-BE-Mlflow" {
-  count                            = var.deploy_dev_resources && var.ANP-ML-API-ENV == "dev" ? 1 : 0
   name                             = "ANP-ML-BE-Mlflow"
   internal                         = true
   load_balancer_type               = "network"
@@ -207,7 +199,6 @@ resource "aws_lb" "ANP-ML-BE-Mlflow" {
 }
 
 resource "aws_lb_target_group" "ANP-ML-BE-Mlflow" {
-  count                = var.deploy_dev_resources && var.ANP-ML-API-ENV == "dev" ? 1 : 0
   name                 = "ANP-ML-BE-Mlflow"
   port                 = 80
   protocol             = "TCP"
@@ -225,7 +216,6 @@ resource "aws_lb_target_group" "ANP-ML-BE-Mlflow" {
 }
 
 resource "aws_lb_listener" "ANP-ML-BE-Mlflow" {
-  count             = var.deploy_dev_resources && var.ANP-ML-API-ENV == "dev" ? 1 : 0
   load_balancer_arn = aws_lb.ANP-ML-BE-Mlflow[count.index].arn
   port              = 80
   protocol          = "TCP"
