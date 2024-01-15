@@ -36,12 +36,3 @@ resource "aws_security_group_rule" "ecs_loopback_rule" {
   security_group_id = aws_security_group.ANP-ML-BE-Mlflow.id
 }
 
-resource "aws_security_group_rule" "ecs_loopback_rule2" {
-  type              = "ingress"
-  from_port         = 0
-  to_port           = 2049
-  protocol          = "-1"
-  self              = true
-  description       = "Loopback"
-  security_group_id = aws_security_group.ANP-ML-BE-Mlflow.id
-}
