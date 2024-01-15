@@ -53,6 +53,12 @@ data "aws_iam_policy_document" "ANP-ML-API-Task" {
   }
   statement {
     actions = [
+    "efs:*"
+    ]
+    resources = ["*"]
+  }
+  statement {
+    actions = [
       "kms:Decrypt"
     ]
     resources = [

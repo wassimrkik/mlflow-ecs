@@ -16,7 +16,7 @@ resource "aws_ecs_task_definition" "ANP-ML-BE-Mlflow" {
       name       = "ANP-ML-BE-Mlflow"
       image      = "${local.aws_account_id}.dkr.ecr.${local.aws_region_name}.amazonaws.com/anp/mlflow:${var.ANP-ML-API-CONTAINER-TAG}"
       entryPoint = ["sh", "-c"]
-      command    = ["mlflow server --host 0.0.0.0 --port 80 --default-artifact-root s3://sanofi-chc-${lookup(local.region_mapping, local.aws_region_name)}-anp-mlflow-${var.ANP-ML-API-ENV} --serve-artifacts"]
+      command    = ["mlflow server --host 0.0.0.0 --port 80 --backend-store-uri /efs/ --default-artifact-root s3://sanofi-chc-${lookup(local.region_mapping, local.aws_region_name)}-anp-mlflow-${var.ANP-ML-API-ENV} --serve-artifacts"]
       environment = [
         {
           "name" : "ENV",
@@ -40,8 +40,22 @@ resource "aws_ecs_task_definition" "ANP-ML-BE-Mlflow" {
           hostPort      = 80
         }
       ]
+      "mountPoints" : [
+        {
+          "sourceVolume" : "efs_temp",
+          "containerPath" : "/efs",
+          "readOnly" : false
+        }
+      ]
     }
   ])
+  volume {
+    name = "efs_temp"
+    efs_volume_configuration {
+      file_system_id = aws_efs_file_system.efs_volume.id
+      root_directory = "/"
+    }
+  }
 }
 
 resource "aws_ecs_service" "ANP-ML-BE-Mlflow" {
