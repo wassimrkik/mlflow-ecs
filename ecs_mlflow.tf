@@ -14,7 +14,7 @@ resource "aws_ecs_task_definition" "ANP-ML-BE-Mlflow" {
   container_definitions = jsonencode([
     {
       name       = "ANP-ML-BE-Mlflow"
-      image      = "mlflow:latest"
+      image      = "${local.aws_account_id}.dkr.ecr.${local.aws_region_name}.amazonaws.com/anp/mlflow:${var.ANP-ML-API-CONTAINER-TAG}"
       entryPoint = ["sh", "-c"]
       command    = ["mlflow server --host 0.0.0.0 --port 80 --default-artifact-root s3://sanofi-chc-${lookup(local.region_mapping, local.aws_region_name)}-anp-mlflow-${var.ANP-ML-API-ENV} --serve-artifacts"]
       environment = [
