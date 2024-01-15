@@ -1,6 +1,7 @@
 name: Terraform Deploy ML API DEV
 on:
-    workflow_dispatch:
+  push:
+    branche: develop-mldev
 
 env:
     TF_VAR_snowflakepassword_dev: ${{secrets.TF_VAR_SNOWFLAKEPASSWORD_DEV}}
