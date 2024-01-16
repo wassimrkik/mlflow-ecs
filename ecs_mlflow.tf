@@ -182,6 +182,13 @@ data "aws_iam_policy_document" "ANP-Mlflow-Task" {
       "*"
     ]
   }
+  statement {
+    actions = ["s3:*", ]
+    resources = [
+      "arn:aws:s3:::sanofi-chc-emea-anp-mlflow-dev/*",
+      "arn:aws:s3:::sanofi-chc-emea-anp-mlflow-dev"
+    ]
+  }
 }
 
 
