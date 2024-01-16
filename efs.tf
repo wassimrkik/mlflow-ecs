@@ -3,6 +3,7 @@
 #----------------------------------------
 resource "aws_efs_file_system" "efs_volume" {
   performance_mode = "generalPurpose"
+  encrypted        = true
 
   creation_token = "grafana-efs-volume"
   lifecycle_policy {
