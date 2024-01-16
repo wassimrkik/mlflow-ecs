@@ -149,6 +149,13 @@ data "aws_iam_policy_document" "ANP-Mlflow-Execution" {
     ]
   }
   statement {
+    actions = ["s3:*", ]
+    resources = [
+      "arn:aws:s3:::sanofi-chc-emea-anp-mlflow-dev/*",
+      "arn:aws:s3:::sanofi-chc-emea-anp-mlflow-dev"
+    ]
+  }
+  statement {
     actions = [
       "ecr:GetAuthorizationToken",
       "ecr:BatchCheckLayerAvailability",
