@@ -27,13 +27,13 @@ resource "aws_efs_mount_target" "ecs_temp_space_az1" {
 #----------------------------------------
 # ECS security-group loop back rule to connect to EFS Volume
 #----------------------------------------
-resource "aws_security_group_rule" "ecs_loopback_rule" {
-  type              = "ingress"
-  from_port         = 0
-  to_port           = 0
-  protocol          = "-1"
-  self              = true
-  description       = "Loopback"
-  security_group_id = aws_security_group.ANP-ML-BE-Mlflow.id
-}
+# resource "aws_security_group_rule" "ecs_loopback_rule" {
+#   type              = "ingress"
+#   from_port         = 0
+#   to_port           = 0
+#   protocol          = "-1"
+#   self              = true
+#   description       = "Loopback"
+#   security_group_id = aws_security_group.ANP-ML-BE-Mlflow.id
+# }
 
