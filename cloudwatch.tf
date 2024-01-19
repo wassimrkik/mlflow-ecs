@@ -15,7 +15,7 @@ resource "aws_cloudwatch_event_rule" "ecs_events" {
   event_pattern = jsonencode({
     "source" : ["aws.ecs"],
     "detail" : {
-      "clusterArn" : [aws_ecs_cluster.Anp-APA-UI.arn]
+      "clusterArn" : [aws_ecs_cluster.ANP-ML-API.arn]
     }
   })
 }
@@ -68,7 +68,7 @@ resource "aws_cloudwatch_metric_alarm" "service_crashes" {
 resource "aws_sns_topic" "monitoring" {
   name = "monitoring"
   tags = {
-    environment = var.APA-UI-BE-NODE-ENV
+    environment = var.ANP-ML-API-ENV
   }
 }
 
