@@ -22,7 +22,7 @@ env:
     
 jobs:
   apply-terraform:
-    runs-on: [self-hosted, atmos-aws-shared-gh-runner]
+    runs-on: ['atmos-aws-arc-runner-set']
     environment: develop
 
     steps:
