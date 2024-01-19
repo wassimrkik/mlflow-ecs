@@ -22,3 +22,5 @@ APA-ML-BE-API-TOKEN-ARN     = "arn:aws:secretsmanager:eu-west-1:698178790353:sec
 APA-ML-BE-MLFLOW-TASK-CPU   = "2048"
 APA-ML-BE-MLFLOW-TASK-MEM   = "4096"
 APA-ML-BE-MLFLOW-PORT       = "80"
+EMAIL-NOTIFICATION      = ["mohamed.wassim-ext@sanofi.com", "cyril.noirot@sanofi.com"]
+ID-SERVICE                  = "API-MLDEV"

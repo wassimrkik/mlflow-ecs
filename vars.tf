@@ -2,6 +2,12 @@ variable "ANP-ML-API-ENV" {
   type = string
 }
 
+variable "ID-SERVICE" {
+  type = string
+}
+variable "EMAIL-NOTIFICATION" {
+  type = list(any)
+}
 variable "APA-ML-BE-MLFLOW-PORT" {
 
 }
