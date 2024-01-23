@@ -1,6 +1,6 @@
 name: Terraform Deploy ML API DEV
 on:
-  push:
+  pull_request:
     branche: develop-mldev
 
 env:
