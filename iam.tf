@@ -8,11 +8,6 @@ module "IAM_role_ANP-ML-API-execution" {
 data "aws_iam_policy_document" "ANP-ML-API-execution" {
   statement {
     actions = [
-    "s3:*"]
-    resources = [aws_s3_bucket.APA-ML-Mlflow.arn]
-  }
-  statement {
-    actions = [
       "ecr:GetAuthorizationToken",
       "ecr:BatchCheckLayerAvailability",
       "ecr:GetDownloadUrlForLayer",
@@ -53,11 +48,6 @@ module "IAM_role_ANP-ML-API-Task" {
 data "aws_iam_policy_document" "ANP-ML-API-Task" {
   statement {
     actions = [
-    "s3:*"]
-    resources = ["arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}", aws_s3_bucket.APA-ML-Mlflow.arn]
-  }
-  statement {
-    actions = [
       "efs:*"
     ]
     resources = ["*"]
@@ -80,7 +70,7 @@ data "aws_iam_policy_document" "ANP-ML-API-Task" {
     actions = [
       "s3:*"
     ]
-    resources = ["arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}/*", "arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}/", "arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}/apa/*"]
+    resources = ["arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}/*", "arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}/", "arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}/apa/*", "${aws_s3_bucket.APA-ML-Mlflow}/", "${aws_s3_bucket.APA-ML-Mlflow}/*"]
   }
 }
 
