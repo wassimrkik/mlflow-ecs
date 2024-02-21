@@ -49,7 +49,7 @@ data "aws_iam_policy_document" "ANP-ML-API-Task" {
   statement {
     actions = [
     "s3:*"]
-    resources = ["arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}"]
+    resources = ["arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}", aws_s3_bucket.APA-ML-Mlflow.arn]
   }
   statement {
     actions = [
