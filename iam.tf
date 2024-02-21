@@ -70,7 +70,7 @@ data "aws_iam_policy_document" "ANP-ML-API-Task" {
     actions = [
       "s3:*"
     ]
-    resources = ["arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}/*", "arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}/", "arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}/apa/*", "${aws_s3_bucket.APA-ML-Mlflow}/", "${aws_s3_bucket.APA-ML-Mlflow}/*"]
+    resources = ["arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}/*", "arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}/", "arn:aws:s3:::${var.APA-ML-BE-S3-BUCKET}/apa/*", "${aws_s3_bucket.APA-ML-Mlflow.arn}/", "${aws_s3_bucket.APA-ML-Mlflow.arn}/*"]
   }
 }
 
