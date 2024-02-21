@@ -8,6 +8,11 @@ module "IAM_role_ANP-ML-API-execution" {
 data "aws_iam_policy_document" "ANP-ML-API-execution" {
   statement {
     actions = [
+    "s3:*"]
+    resources = [aws_s3_bucket.APA-ML-Mlflow.arn]
+  }
+  statement {
+    actions = [
       "ecr:GetAuthorizationToken",
       "ecr:BatchCheckLayerAvailability",
       "ecr:GetDownloadUrlForLayer",
