@@ -2,11 +2,11 @@
 # EFS
 #----------------------------------------
 resource "aws_efs_file_system" "efs_volume" {
-  performance_mode = "generalPurpose"
-  encrypted        = true
-  throughput_mode = "provisioned"
+  performance_mode                = "generalPurpose"
+  encrypted                       = true
+  throughput_mode                 = "provisioned"
   provisioned_throughput_in_mibps = 50
-  creation_token = "grafana-efs-volume"
+  creation_token                  = "grafana-efs-volume"
 
 }
 
