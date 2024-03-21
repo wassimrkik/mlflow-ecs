@@ -4,11 +4,9 @@
 resource "aws_efs_file_system" "efs_volume" {
   performance_mode = "generalPurpose"
   encrypted        = true
-
+  throughput_mode = "provisioned"
+  provisioned_throughput_in_mibps = 50
   creation_token = "grafana-efs-volume"
-  lifecycle_policy {
-    transition_to_ia = "AFTER_7_DAYS"
-  }
 
 }
 
