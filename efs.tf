@@ -12,6 +12,13 @@ resource "aws_efs_file_system" "efs_volume" {
   }
 }
 
+resource "aws_efs_backup_policy" "policy" {
+  file_system_id = aws_efs_file_system.efs_volume.id
+  backup_policy {
+    status = "ENABLED"
+  }
+}
+
 resource "aws_efs_mount_target" "ecs_temp_space_az0" {
   file_system_id  = aws_efs_file_system.efs_volume.id
   subnet_id       = tolist(data.aws_subnet_ids.subnets.ids)[0]
