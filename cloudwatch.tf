@@ -67,6 +67,7 @@ resource "aws_cloudwatch_metric_alarm" "service_crashes" {
 # AWS SNS topic
 resource "aws_sns_topic" "monitoring" {
   name = "monitoring-mldev-api"
+  kms_master_key_id = "alias/aws/sns"
   tags = {
     environment = var.ANP-ML-API-ENV
   }

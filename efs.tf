@@ -7,7 +7,9 @@ resource "aws_efs_file_system" "efs_volume" {
   throughput_mode                 = "provisioned"
   provisioned_throughput_in_mibps = 50
   creation_token                  = "grafana-efs-volume"
-
+  tags = {
+    Name = "ANP-Mlflow-Backend-Store"
+  }
 }
 
 resource "aws_efs_mount_target" "ecs_temp_space_az0" {
