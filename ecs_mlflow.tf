@@ -151,8 +151,8 @@ data "aws_iam_policy_document" "ANP-Mlflow-Execution" {
   statement {
     actions = ["s3:*", ]
     resources = [
-      "arn:aws:s3:::sanofi-chc-emea-anp-mlflow-dev/*",
-      "arn:aws:s3:::sanofi-chc-emea-anp-mlflow-dev"
+      "${aws_s3_bucket.APA-ML-Mlflow.arn}/*",
+      aws_s3_bucket.APA-ML-Mlflow.arn
     ]
   }
   statement {
@@ -185,8 +185,8 @@ data "aws_iam_policy_document" "ANP-Mlflow-Task" {
   statement {
     actions = ["s3:*", ]
     resources = [
-      "arn:aws:s3:::sanofi-chc-emea-anp-mlflow-dev/*",
-      "arn:aws:s3:::sanofi-chc-emea-anp-mlflow-dev"
+      "${aws_s3_bucket.APA-ML-Mlflow.arn}/*",
+      aws_s3_bucket.APA-ML-Mlflow.arn
     ]
   }
 }
