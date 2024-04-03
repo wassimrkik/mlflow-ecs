@@ -6,7 +6,7 @@ resource "aws_efs_file_system" "efs_volume" {
   encrypted                       = true
   throughput_mode                 = "provisioned"
   provisioned_throughput_in_mibps = 50
-  creation_token                  = "grafana-efs-volume"
+  creation_token                  = "mlflow-efs-volume"
   tags = {
     Name = "ANP-Mlflow-Backend-Store"
   }
