@@ -1,21 +1,22 @@
 name: Terraform Plan ML API PROD
 on:
-    workflow_dispatch:
+  push:
+    branche: master-mldev
 
 
 env:
     TF_VAR_snowflakepassword_dev: ""
     TF_VAR_snowflakepassword_qa: ""
     TF_VAR_snowflakepassword_uat: ""
-    TF_VAR_snowflakepassword_prod: "${{secrets.TF_VAR_SNOWFLAKEPASSWORD_PROD}}"
+    TF_VAR_snowflakepassword_prod: "${{secrets.TF_VAR_SNOWFLAKEPASSWORD_PROD_MLDEV}}"
     TF_VAR_sslcert_dev: ""
     TF_VAR_sslkey_dev: ""
     TF_VAR_sslcert_qa: ""
     TF_VAR_sslkey_qa: ""
     TF_VAR_sslcert_uat: ""
-    TF_VAR_sslcert_prod: ${{secrets.TF_VAR_PREDICTSSLCERT_PROD}}
+    TF_VAR_sslcert_prod: ${{secrets.TF_VAR_PREDICTSSLCERT_PROD_MLDEV}}
     TF_VAR_sslkey_uat: ""
-    TF_VAR_sslkey_prod: ${{secrets.TF_VAR_PREDICTSSLKEY_PROD}}
+    TF_VAR_sslkey_prod: ${{secrets.TF_VAR_PREDICTSSLKEY_PROD_MLDEV}}
     HTTP_PROXY: http://emea-aws-webproxy.service.cloud.local:3128
     HTTPS_PROXY: http://emea-aws-webproxy.service.cloud.local:3128
     NO_PROXY: 127.0.0.1,localhost,169.254.169.254,.sanofi.com,.cloud.local,sts.us-east-1.amazonaws.com,execute-api.us-east-1.amazonaws.com,s3.us-east-1.amazonaws

@@ -1,16 +1,17 @@
 name: Terraform Plan ML API QA
 on:
-    workflow_dispatch:
+  push:
+    branche: quality-mldev
 
 env:
     TF_VAR_snowflakepassword_dev: ""
-    TF_VAR_snowflakepassword_qa: ${{secrets.TF_VAR_SNOWFLAKEPASSWORD_QA}}
+    TF_VAR_snowflakepassword_qa: ${{secrets.TF_VAR_SNOWFLAKEPASSWORD_QA_MLDEV}}
     TF_VAR_snowflakepassword_uat: ""
     TF_VAR_snowflakepassword_prod: ""
     TF_VAR_sslcert_dev: ""
     TF_VAR_sslkey_dev: ""
-    TF_VAR_sslcert_qa: ${{secrets.TF_VAR_PREDICTSSLCERT_QA}}
-    TF_VAR_sslkey_qa: ${{secrets.TF_VAR_PREDICTSSLKEY_QA}}
+    TF_VAR_sslcert_qa: ${{secrets.TF_VAR_PREDICTSSLCERT_QA_MLDEV}}
+    TF_VAR_sslkey_qa: ${{secrets.TF_VAR_PREDICTSSLKEY_QA_MLDEV}}
     TF_VAR_sslcert_uat: ""
     TF_VAR_sslcert_prod: ""
     TF_VAR_sslkey_uat: ""

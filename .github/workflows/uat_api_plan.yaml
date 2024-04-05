@@ -1,20 +1,21 @@
 name: Terraform Plan ML API UAT
 on:
-    workflow_dispatch:
+  push:
+    branche: uat-mldev
 
 
 env:
     TF_VAR_snowflakepassword_dev: 
     TF_VAR_snowflakepassword_qa: ""
-    TF_VAR_snowflakepassword_uat: ${{secrets.TF_VAR_SNOWFLAKEPASSWORD_UAT}}
+    TF_VAR_snowflakepassword_uat: ${{secrets.TF_VAR_SNOWFLAKEPASSWORD_UAT_MLDEV}}
     TF_VAR_snowflakepassword_prod: ""
     TF_VAR_sslcert_dev: ""
     TF_VAR_sslkey_dev: ""
     TF_VAR_sslcert_qa: ""
     TF_VAR_sslkey_qa: ""
-    TF_VAR_sslcert_uat: ${{secrets.TF_VAR_PREDICTSSLCERT_UAT}}
+    TF_VAR_sslcert_uat: ${{secrets.TF_VAR_PREDICTSSLCERT_UAT_MLDEV}}
     TF_VAR_sslcert_prod: ""
-    TF_VAR_sslkey_uat: ${{secrets.TF_VAR_PREDICTSSLKEY_UAT}}
+    TF_VAR_sslkey_uat: ${{secrets.TF_VAR_PREDICTSSLKEY_UAT_MLDEV}}
     TF_VAR_sslkey_prod: ""
     HTTP_PROXY: http://emea-aws-webproxy.service.cloud.local:3128
     HTTPS_PROXY: http://emea-aws-webproxy.service.cloud.local:3128

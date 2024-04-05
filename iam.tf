@@ -64,7 +64,7 @@ data "aws_iam_policy_document" "ANP-ML-API-Task" {
     actions = [
       "secretsmanager:GetSecretValue"
     ]
-    resources = [var.DATABRICKS_SECRET_ID, var.APA-ML-BE-API-TOKEN-ARN]
+    resources = [var.APA-ML-BE-API-TOKEN-ARN]
   }
   statement {
     actions = [
