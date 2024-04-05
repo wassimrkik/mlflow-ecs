@@ -28,17 +28,11 @@ variable "SNOWFLAKE_WAREHOUSE" {
 
 }
 
-variable "DATABRICKS_SECRET_ID" {
-  type = string
-}
 variable "SNOWFLAKE_USER" {
   type = string
 }
 
 variable "SNOWFLAKE_DB_APA" {
-  type = string
-}
-variable "DATABRICKS_HOST" {
   type = string
 }
 variable "ANP-ML-API-TASK-CPU" {

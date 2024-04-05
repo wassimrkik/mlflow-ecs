@@ -1,7 +1,9 @@
 name: Terraform Plan ML API QA
 on:
+  workflow_dispatch:
   push:
-    branche: quality-mldev
+    branches: 
+      - quality-mldev
 
 env:
     TF_VAR_snowflakepassword_dev: ""

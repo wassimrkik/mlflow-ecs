@@ -1,7 +1,9 @@
 name: Terraform Plan ML API UAT
 on:
+  workflow_dispatch:
   push:
-    branche: uat-mldev
+    branches: 
+      - uat-mldev
 
 
 env:
