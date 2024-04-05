@@ -76,7 +76,7 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
         },
         {
           "name" : "MLFLOW_TRACKING_URI",
-          "value" : aws_route53_record.ANP-ML-BE-Mlflow.fqdn
+          "value" : "http://${aws_route53_record.ANP-ML-BE-Mlflow.fqdn}"
         },
         {
           "name" : "SNOWFLAKE_USER",
