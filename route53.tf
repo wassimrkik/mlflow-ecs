@@ -1,6 +1,6 @@
 resource "aws_route53_record" "ANP-ML-API" {
   zone_id = data.aws_route53_zone.selected.zone_id
-  name    = "anp-api-mldev"
+  name    = var.dns_name
   type    = "CNAME"
   ttl     = "300"
   records = [aws_lb.ANP-ML-API.dns_name]
