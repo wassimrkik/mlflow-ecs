@@ -141,3 +141,9 @@ variable "sslcert_prod" {
   type      = string
   sensitive = true
 }
+variable "dns_name" {
+  type = string
+}
+variable "dns_mlflow" {
+  type = string
+}

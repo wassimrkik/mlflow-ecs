@@ -200,7 +200,7 @@ resource "aws_cloudwatch_log_group" "ANP-ML-BE-MLflow" {
 
 resource "aws_route53_record" "ANP-ML-BE-Mlflow" {
   zone_id = data.aws_route53_zone.selected.zone_id
-  name    = "anp-mlflow"
+  name    = var.dns_mlflow
   type    = "CNAME"
   ttl     = "300"
   records = [aws_lb.ANP-ML-BE-Mlflow.dns_name]
