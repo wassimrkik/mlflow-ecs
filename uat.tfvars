@@ -22,5 +22,5 @@ APA-ML-BE-MLFLOW-TASK-MEM   = "4096"
 APA-ML-BE-MLFLOW-PORT       = "80"
 EMAIL-NOTIFICATION          = ["mohamed.wassim-ext@sanofi.com", "cyril.noirot@sanofi.com"]
 ID-SERVICE                  = "API-MLDEV"
-dns_service                 = "anp-api-uat"
-dns_mlflow = "anp-mlflow-uat"
+dns_name                    = "anp-api-uat"
+dns_mlflow                  = "anp-mlflow-uat"
