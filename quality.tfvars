@@ -23,4 +23,4 @@ APA-ML-BE-MLFLOW-PORT       = "80"
 EMAIL-NOTIFICATION          = ["mohamed.wassim-ext@sanofi.com", "cyril.noirot@sanofi.com"]
 ID-SERVICE                  = "API-MLDEV"
 dns_name                    = "anp-api-qa"
-mlflow_dns                  = "anp-mlflow-qa"
+dns_mlflow                  = "anp-mlflow-qa"
