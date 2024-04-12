@@ -9,4 +9,10 @@ terraform {
 
 provider "aws" {
   region = var.awsregion
+  default_tags {
+    tags = {
+      Project = "CHC AnP"
+      Owner   = "Terraform"
+    }
+  }
 }
