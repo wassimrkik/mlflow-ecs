@@ -11,8 +11,10 @@ provider "aws" {
   region = var.awsregion
   default_tags {
     tags = {
-      Project = "CHC AnP"
-      Owner   = "Terraform"
+      Project    = "AnP"
+      Owner      = "CHC"
+      modifiedOn = formatdate("YYYY-MM-DD hh:mm:ss ZZZ", timestamp())
+      createdBy  = "Terraform"
     }
   }
 }
