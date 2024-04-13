@@ -13,7 +13,6 @@ provider "aws" {
     tags = {
       Project           = "AnP"
       Owner             = "CHC"
-      modifiedOn        = formatdate("YYYY-MM-DD hh:mm:ss ZZZ", timestamp())
       CE_Application_ID = "APM0069253"
       createdBy         = "Terraform"
     }
