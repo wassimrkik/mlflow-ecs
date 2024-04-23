@@ -226,10 +226,7 @@ resource "aws_lb_target_group" "ANP-ML-BE-Mlflow" {
   target_type          = "ip"
   vpc_id               = data.aws_vpc.main.id
   deregistration_delay = 300
-  health_check {
-    interval = 30
-    protocol = "TCP"
-  }
+
   stickiness {
     enabled = true
     type    = "source_ip"
