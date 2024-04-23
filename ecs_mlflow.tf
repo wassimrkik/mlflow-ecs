@@ -213,9 +213,8 @@ resource "aws_route53_record" "ANP-ML-BE-Mlflow" {
 resource "aws_lb" "ANP-ML-BE-Mlflow" {
   name                             = "ANP-ML-BE-Mlflow"
   internal                         = true
-  load_balancer_type               = "application"
+  load_balancer_type               = "network"
   subnets                          = data.aws_subnet_ids.subnets.ids
-  security_groups                  = [aws_security_group.Anp-mlflow-LB.id]
   enable_cross_zone_load_balancing = true
   enable_deletion_protection       = false
 }
@@ -223,61 +222,30 @@ resource "aws_lb" "ANP-ML-BE-Mlflow" {
 resource "aws_lb_target_group" "ANP-ML-BE-Mlflow" {
   name                 = "ANP-ML-BE-Mlflow"
   port                 = 80
-  protocol             = "HTTP"
+  protocol             = "TCP"
   target_type          = "ip"
   vpc_id               = data.aws_vpc.main.id
   deregistration_delay = 300
+  health_check {
+    interval = 30
+    protocol = "TCP"
+  }
+  stickiness {
+    enabled = true
+    type    = "source_ip"
+  }
 }
+
 
 resource "aws_lb_listener" "ANP-ML-BE-Mlflow" {
   load_balancer_arn = aws_lb.ANP-ML-BE-Mlflow.arn
   port              = 80
-  protocol          = "HTTP"
-  default_action {
-    type = "redirect"
-    redirect {
-      port        = "443"
-      protocol    = "HTTPS"
-      status_code = "HTTP_301"
-    }
-  }
-  depends_on = [
-    aws_lb.ANP-ML-BE-Mlflow, aws_lb_target_group.ANP-ML-BE-Mlflow
-  ]
-}
-
-resource "aws_lb_listener" "ANP-ML-BE-Mlflow-https" {
-  load_balancer_arn = aws_lb.ANP-ML-BE-Mlflow.arn
-  port              = 443
-  protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-FS-1-2-Res-2020-10"
-  certificate_arn   = "arn:aws:acm:eu-west-1:698178790353:certificate/16face40-6462-445b-b697-87bd2ac3c85f"
+  protocol          = "TCP"
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.ANP-ML-BE-Mlflow.arn
   }
-}
-
-resource "aws_security_group" "Anp-mlflow-LB" {
-  name        = "Anp-mlflow-LB"
-  description = "Allow inbound traffic to mlflow LB"
-  vpc_id      = data.aws_vpc.main.id
-  ingress {
-    from_port   = "443"
-    to_port     = "443"
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  ingress {
-    from_port   = "80"
-    to_port     = "80"
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  depends_on = [
+    aws_lb.ANP-ML-BE-Mlflow, aws_lb_target_group.ANP-ML-BE-Mlflow
+  ]
 }
