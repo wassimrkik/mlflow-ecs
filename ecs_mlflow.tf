@@ -148,13 +148,13 @@ data "aws_iam_policy_document" "ANP-Mlflow-Execution" {
       "*"
     ]
   }
-  statement {
-    actions = ["s3:*", ]
-    resources = [
-      "${aws_s3_bucket.APA-ML-Mlflow.arn}/*",
-      aws_s3_bucket.APA-ML-Mlflow.arn
-    ]
-  }
+  # statement {
+  #   actions = ["s3:*", ]
+  #   resources = [
+  #     "${aws_s3_bucket.APA-ML-Mlflow.arn}/*",
+  #     aws_s3_bucket.APA-ML-Mlflow.arn
+  #   ]
+  # }
   statement {
     actions = [
       "ecr:GetAuthorizationToken",
@@ -182,13 +182,13 @@ data "aws_iam_policy_document" "ANP-Mlflow-Task" {
       "*"
     ]
   }
-  statement {
-    actions = ["s3:*", ]
-    resources = [
-      "${aws_s3_bucket.APA-ML-Mlflow.arn}/*",
-      aws_s3_bucket.APA-ML-Mlflow.arn
-    ]
-  }
+  # statement {
+  #   actions = ["s3:*", ]
+  #   resources = [
+  #     "${aws_s3_bucket.APA-ML-Mlflow.arn}/*",
+  #     aws_s3_bucket.APA-ML-Mlflow.arn
+  #   ]
+  # }
 }
 
 
