@@ -147,3 +147,7 @@ variable "dns_name" {
 variable "dns_mlflow" {
   type = string
 }
+
+variable "MLFLOW_CERT_ARN" {
+  
+}

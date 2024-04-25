@@ -249,7 +249,7 @@ resource "aws_lb_listener" "ANP-ML-BE-Mlflow-https" {
   port              = 443
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-FS-1-2-Res-2020-10"
-  certificate_arn   = "arn:aws:acm:eu-west-1:698178790353:certificate/16face40-6462-445b-b697-87bd2ac3c85f"
+  certificate_arn   = var.MLFLOW_CERT_ARN
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.ANP-ML-BE-Mlflow.arn
