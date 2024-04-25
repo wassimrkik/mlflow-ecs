@@ -149,5 +149,5 @@ variable "dns_mlflow" {
 }
 
 variable "MLFLOW_CERT_ARN" {
-  
+
 }
