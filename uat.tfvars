@@ -24,3 +24,4 @@ EMAIL-NOTIFICATION          = ["mohamed.wassim-ext@sanofi.com", "cyril.noirot@sa
 ID-SERVICE                  = "API-MLDEV"
 dns_name                    = "anp-api-uat"
 dns_mlflow                  = "anp-mlflow-uat"
+MLFLOW_CERT_ARN             = "arn:aws:acm:eu-west-1:823727333991:certificate/4c39deeb-e22a-49ce-a88f-2d2d83429d50"
