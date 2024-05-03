@@ -24,7 +24,7 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
       environment = [
         {
           "name" : "SNOWFLAKE_ACCOUNT",
-          "value" : "sanofi-emea_chc"
+          "value" : var.APA-ML-BE-SNOWFLAKE-ACCOUNT
         },
         {
           "name" : "http_proxy",

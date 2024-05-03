@@ -154,3 +154,7 @@ variable "MLFLOW_CERT_ARN" {
 variable "SNOWFLAKE_SCHEMA" {
 
 }
+
+variable "APA-ML-BE-SNOWFLAKE-ACCOUNT" {
+
+}
