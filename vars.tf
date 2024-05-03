@@ -152,5 +152,5 @@ variable "MLFLOW_CERT_ARN" {
 
 }
 variable "SNOWFLAKE_SCHEMA" {
-  
+
 }
