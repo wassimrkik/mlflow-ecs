@@ -75,6 +75,10 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
           "value" : var.SNOWFLAKE_WAREHOUSE
         },
         {
+          "name" : "SNOWFLAKE_SCHEMA",
+          "value" : var.SNOWFLAKE_SCHEMA
+        },
+        {
           "name" : "MLFLOW_TRACKING_URI",
           "value" : "https://${aws_route53_record.ANP-ML-BE-Mlflow.fqdn}"
         },
