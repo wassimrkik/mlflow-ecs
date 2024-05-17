@@ -24,7 +24,7 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
       environment = [
         {
           "name" : "SNOWFLAKE_ACCOUNT",
-          "value" : "sanofi-emea_chc"
+          "value" : var.APA-ML-BE-SNOWFLAKE-ACCOUNT
         },
         {
           "name" : "http_proxy",
@@ -40,7 +40,7 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
         },
         {
           "name" : "COMPUTESERVER",
-          "value" : "datalab-gurobi.p015068701664.aws-emea.sanofi.com:61000"
+          "value" : "anp-gurobi.p317782366132.aws-emea.sanofi.com:61000"
         },
         {
           "name" : "https_proxy",
@@ -73,6 +73,10 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
         {
           "name" : "SNOWFLAKE_WAREHOUSE",
           "value" : var.SNOWFLAKE_WAREHOUSE
+        },
+        {
+          "name" : "SNOWFLAKE_SCHEMA",
+          "value" : var.SNOWFLAKE_SCHEMA
         },
         {
           "name" : "MLFLOW_TRACKING_URI",
