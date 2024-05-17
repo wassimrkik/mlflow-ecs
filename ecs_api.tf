@@ -40,7 +40,7 @@ resource "aws_ecs_task_definition" "ANP-ML-API" {
         },
         {
           "name" : "COMPUTESERVER",
-          "value" : "datalab-gurobi.p015068701664.aws-emea.sanofi.com:61000"
+          "value" : "anp-gurobi.p317782366132.aws-emea.sanofi.com:61000"
         },
         {
           "name" : "https_proxy",
