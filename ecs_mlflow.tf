@@ -1,3 +1,12 @@
+resource "aws_ecs_cluster" "ANP-ML-API" {
+  name = "ANP-MLDEV-API"
+  setting {
+    name  = "containerInsights"
+    value = "enabled"
+  }
+  capacity_providers = ["FARGATE"]
+}
+
 resource "aws_ecs_task_definition" "ANP-ML-BE-Mlflow" {
   family                   = "ANP-ML-BE-Mlflow"
   execution_role_arn       = module.IAM_role_ANP-Mlflow-Execution.role_arn

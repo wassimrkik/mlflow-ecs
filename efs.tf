@@ -8,7 +8,7 @@ resource "aws_efs_file_system" "efs_volume" {
   provisioned_throughput_in_mibps = 100
   creation_token                  = "mlflow-efs-volume"
   tags = {
-    Name = "ANP-Mlflow-Backend-Store"
+    Name = "Mlflow-Backend-Store"
   }
 }
 
