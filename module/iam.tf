@@ -22,12 +22,6 @@ resource "aws_iam_role_policy_attachment" "custom_policy" {
   policy_arn = aws_iam_policy.app.arn
 }
 
-resource "aws_iam_role_policy_attachment" "standard_policy" {
-  count      = var.service == "ec2" ? 1 : 0
-  role       = aws_iam_role.app.name
-  policy_arn = "arn:aws:iam::${local.aws_account_id}:policy/ce-SanofiSSM-PolicyforEC2"
-}
-
 resource "aws_iam_instance_profile" "app" {
   count = var.service == "ec2" ? 1 : 0
   name  = "App_${var.role_name}"
